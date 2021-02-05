@@ -14,8 +14,21 @@ button.addEventListener("click", () => {
       container.innerHTML = template(data);
     })
     .catch(() => {
-      container.innerHTML = 'La ciudad no existe'
+      container.innerHTML = 'City not found'
     })
+})
+document.addEventListener("keyup", (event) => {
+  if (event.code === "Enter") {
+    const container = document.getElementById("container");
+    const input = document.getElementById("input");
+    getData(input.value)
+      .then((data) => {
+        container.innerHTML = template(data);
+      })
+      .catch(() => {
+        container.innerHTML = 'City not found'
+      })
+  }
 })
 
 function template(data) {
@@ -24,8 +37,8 @@ function template(data) {
       <div class="cards">
         <h3>${data.name}</h3>
         <span>Temperature: ${kelvinToCelsius(data.main.temp)}°</span>
-        <span>humidity: ${data.main.temp_max}%</span>
-        <span>humidity: ${data.main.temp_min}%</span>
+        <span>Maximum temperature: ${kelvinToCelsius(data.main.temp_max)}°</span>
+        <span>Minimum temperature: ${kelvinToCelsius(data.main.temp_min)}°</span>
         <span>humidity: ${data.main.humidity}%</span>
         <span>Climate: ${data.weather[0].description}</span>
       </div>
@@ -36,3 +49,7 @@ function template(data) {
 
 let kelvinToCelsius = (kelvinValue) => Math.round(kelvinValue - 273);
 kelvinToCelsius(297);
+
+
+
+
