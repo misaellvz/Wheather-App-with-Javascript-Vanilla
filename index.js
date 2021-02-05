@@ -6,7 +6,15 @@ const getData = (city) => {
 }
 
 const button = document.getElementById("button");
-button.addEventListener("click", () => {
+button.addEventListener("click", getWheaterInfo)
+
+document.addEventListener("keyup", (event) => {
+  if (event.code === "Enter") {
+    getWheaterInfo();
+  }
+})
+
+function getWheaterInfo() {
   const container = document.getElementById("container");
   const input = document.getElementById("input");
   getData(input.value)
@@ -16,20 +24,7 @@ button.addEventListener("click", () => {
     .catch(() => {
       container.innerHTML = 'City not found'
     })
-})
-document.addEventListener("keyup", (event) => {
-  if (event.code === "Enter") {
-    const container = document.getElementById("container");
-    const input = document.getElementById("input");
-    getData(input.value)
-      .then((data) => {
-        container.innerHTML = template(data);
-      })
-      .catch(() => {
-        container.innerHTML = 'City not found'
-      })
-  }
-})
+}
 
 function template(data) {
   return `
