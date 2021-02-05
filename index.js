@@ -33,11 +33,11 @@ function template(data) {
         <h3>${data.name}</h3>
         <span>Temperature: ${kelvinToCelsius(data.main.temp)}°</span>
         <span>Maximum temperature: ${kelvinToCelsius(data.main.temp_max)}°</span>
-        <span>Minimum temperature: ${kelvinToCelsius(data.main.temp_min)}°</span>
-        <span>humidity: ${data.main.humidity}%</span>
+        <span>Minimum temperature: ${kelvinToCelsius(data.main.feels_like)}°</span>
+        <span>Feels like: ${kelvinToCelsius(data.main.temp_min)}°</span>
+        <span>Humidity: ${data.main.humidity}%</span>
         <span>Climate: ${data.weather[0].description}</span>
       </div>
-      <div class="cards"></div>
     </div>
   `;
 }
