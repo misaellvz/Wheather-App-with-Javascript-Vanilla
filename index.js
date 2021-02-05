@@ -32,17 +32,17 @@ function template(data) {
       <div class="cards">
         <h3 class="city">${data.name}</h3>
         <span class ="temperature">${kelvinToCelsius(data.main.temp)}°/${kelvinToCelsius(data.main.temp_min)}°</span>
+        <img class="weather-image" src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="partly_cloudy">
+        <span>Climate: ${data.weather[0].description}</span>
         <span>Maximum temperature: ${kelvinToCelsius(data.main.temp_max)}°</span>
         <span>Feels like: ${kelvinToCelsius(data.main.feels_like)}°</span>
         <span>Humidity: ${data.main.humidity}%</span>
-        <span>Climate: ${data.weather[0].description}</span>
-        <img class="weather-image" src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="partly_cloudy">
         </div>
     </div>
   `;
 }
 
-let kelvinToCelsius = (kelvinValue) => Math.round(kelvinValue - 273);
+let kelvinToCelsius = (kelvinValue) => Math.floor(kelvinValue - 273);
 kelvinToCelsius(297);
 
 
