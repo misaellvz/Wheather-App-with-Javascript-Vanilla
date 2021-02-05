@@ -6,15 +6,15 @@ const getData = (city) => {
 }
 
 const button = document.getElementById("button");
-button.addEventListener("click", getWheaterInfo)
+button.addEventListener("click", getWeatherInfo)
 
 document.addEventListener("keyup", (event) => {
   if (event.code === "Enter") {
-    getWheaterInfo();
+    getWeatherInfo();
   }
 })
 
-function getWheaterInfo() {
+function getWeatherInfo() {
   const container = document.getElementById("container");
   const input = document.getElementById("input");
   getData(input.value)
@@ -28,16 +28,16 @@ function getWheaterInfo() {
 
 function template(data) {
   return `
-    <div class="wheather-cards-container">
+    <div class="weather-cards-container">
       <div class="cards">
-        <h3>${data.name}</h3>
-        <span>Temperature: ${kelvinToCelsius(data.main.temp)}°</span>
+        <h3 class="city">${data.name}</h3>
+        <span class ="temperature">${kelvinToCelsius(data.main.temp)}°/${kelvinToCelsius(data.main.temp_min)}°</span>
         <span>Maximum temperature: ${kelvinToCelsius(data.main.temp_max)}°</span>
-        <span>Minimum temperature: ${kelvinToCelsius(data.main.feels_like)}°</span>
-        <span>Feels like: ${kelvinToCelsius(data.main.temp_min)}°</span>
+        <span>Feels like: ${kelvinToCelsius(data.main.feels_like)}°</span>
         <span>Humidity: ${data.main.humidity}%</span>
         <span>Climate: ${data.weather[0].description}</span>
-      </div>
+        <img class="weather-image" src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="partly_cloudy">
+        </div>
     </div>
   `;
 }
